@@ -744,6 +744,7 @@ add_link_options($<$<COMPILE_LANGUAGE:CXX>:-L${LLVM_LIBRARY_DIRS}>)
 add_link_options($<$<COMPILE_LANGUAGE:CXX>:-Wl,-rpath,${LLVM_LIBRARY_DIRS}>)
 
 add_subdirectory(src/arrow)
+add_subdirectory(thirdparty/xsimd-13.0.0)
 
 if(ARROW_PARQUET)
   add_subdirectory(src/parquet)

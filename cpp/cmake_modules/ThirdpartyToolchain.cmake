@@ -563,9 +563,6 @@ set(ARROW_UTF8PROC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/utf8proc-v2.7.0.ta
 set(XSIMD_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/xsimd-13.0.0.tar.gz")
 set(ZLIB_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.3.1.tar.gz")
 
-MESSAGE("=========================")
-MESSAGE("${CMAKE_SOURCE_DIR}/thirdparty/jemalloc-5.3.0.tar.bz2")
-MESSAGE("=========================")
 # ----------------------------------------------------------------------
 # ExternalProject options
 
@@ -1810,10 +1807,6 @@ macro(build_jemalloc)
   # installations.
 
   message(STATUS "Building jemalloc from source")
-  message("OKOKOK")  
-  message("${JEMALLOC_SOURCE_URL}")
-  message("$ENV{ARROW_JEMALLOC_URL}")
-  message("OKOKOK1")
 
   set(ARROW_JEMALLOC_USE_SHARED OFF)
   set(JEMALLOC_PREFIX
@@ -2198,13 +2191,13 @@ else()
 endif()
 
 if(ARROW_USE_XSIMD)
-  resolve_dependency(xsimd
-                     FORCE_ANY_NEWER_VERSION
-                     TRUE
-                     IS_RUNTIME_DEPENDENCY
-                     FALSE
-                     REQUIRED_VERSION
-                     "8.1.0")
+#  resolve_dependency(xsimd
+#                     FORCE_ANY_NEWER_VERSION
+#                     TRUE
+#                     IS_RUNTIME_DEPENDENCY
+#                     FALSE
+#                     REQUIRED_VERSION
+#                     "8.1.0")
 
   if(xsimd_SOURCE STREQUAL "BUNDLED")
     set(ARROW_XSIMD arrow::xsimd)
