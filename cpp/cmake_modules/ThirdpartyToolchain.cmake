@@ -470,405 +470,102 @@ endforeach()
 
 set(THIRDPARTY_MIRROR_URL "https://apache.jfrog.io/artifactory/arrow/thirdparty/7.0.0")
 
-if(DEFINED ENV{ARROW_ABSL_URL})
-  set(ABSL_SOURCE_URL "$ENV{ARROW_ABSL_URL}")
-else()
-  set_urls(ABSL_SOURCE_URL
-           "https://github.com/abseil/abseil-cpp/archive/${ARROW_ABSL_BUILD_VERSION}.tar.gz"
-  )
-endif()
+# set(ABSL_SOURCE_URL "$ENV{ARROW_ABSL_URL}")
+# set(AWS_C_AUTH_SOURCE_URL "$ENV{ARROW_AWS_C_AUTH_URL}")
+# set(AWS_C_CAL_SOURCE_URL "$ENV{ARROW_AWS_C_CAL_URL}")
+# set(AWS_C_COMMON_SOURCE_URL "$ENV{ARROW_AWS_C_COMMON_URL}")
+# set(AWS_C_COMPRESSION_SOURCE_URL "$ENV{ARROW_AWS_C_COMPRESSION_URL}")
+# set(AWS_C_EVENT_STREAM_SOURCE_URL "$ENV{ARROW_AWS_C_EVENT_STREAM_URL}")
+# set(AWS_C_HTTP_SOURCE_URL "$ENV{ARROW_AWS_C_HTTP_URL}")
+# set(AWS_C_IO_SOURCE_URL "$ENV{ARROW_AWS_C_IO_URL}")
+# set(AWS_C_MQTT_SOURCE_URL "$ENV{ARROW_AWS_C_MQTT_URL}")
+# set(AWS_C_S3_SOURCE_URL "$ENV{ARROW_AWS_C_S3_URL}")
+# set(AWS_C_SDKUTILS_SOURCE_URL "$ENV{ARROW_AWS_C_SDKUTILS_URL}")
+# set(AWS_CHECKSUMS_SOURCE_URL "$ENV{ARROW_AWS_CHECKSUMS_URL}")
+# set(AWS_CRT_CPP_SOURCE_URL "$ENV{ARROW_AWS_CRT_CPP_URL}")
+# set(AWS_LC_SOURCE_URL "$ENV{ARROW_AWS_LC_URL}")
+# set(AWSSDK_SOURCE_URL "$ENV{ARROW_AWSSDK_URL}")
+# set(ARROW_AZURE_SDK_URL "$ENV{ARROW_AZURE_SDK_URL}")
+# set(BOOST_SOURCE_URL "$ENV{ARROW_BOOST_URL}")
+# set(BROTLI_SOURCE_URL "$ENV{ARROW_BROTLI_URL}")
+# set(ARROW_BZIP2_SOURCE_URL "$ENV{ARROW_BZIP2_URL}")
+# set(CARES_SOURCE_URL "$ENV{ARROW_CARES_URL}")
+# set(CRC32C_SOURCE_URL "$ENV{ARROW_CRC32C_URL}")
+# set(GBENCHMARK_SOURCE_URL "$ENV{ARROW_GBENCHMARK_URL}")
+# set(GFLAGS_SOURCE_URL "$ENV{ARROW_GFLAGS_URL}")
+# set(GLOG_SOURCE_URL "$ENV{ARROW_GLOG_URL}")
+# set(google_cloud_cpp_storage_SOURCE_URL "$ENV{ARROW_GOOGLE_CLOUD_CPP_URL}")
+# set(GRPC_SOURCE_URL "$ENV{ARROW_GRPC_URL}")
+# set(GTEST_SOURCE_URL "$ENV{ARROW_GTEST_URL}")
+# set(JEMALLOC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thridparty/jemalloc-5.3.0.tar.bz2")
+# set(MIMALLOC_SOURCE_URL "$ENV{ARROW_MIMALLOC_URL}")
+# set(NLOHMANN_JSON_SOURCE_URL "$ENV{ARROW_NLOHMANN_JSON_URL}")
+# set(LZ4_SOURCE_URL "$ENV{ARROW_LZ4_URL}")
+# set(ORC_SOURCE_URL "$ENV{ARROW_ORC_URL}")
+# set(OPENTELEMETRY_SOURCE_URL "$ENV{ARROW_OPENTELEMETRY_URL}")
+# set(OPENTELEMETRY_PROTO_SOURCE_URL "$ENV{ARROW_OPENTELEMETRY_PROTO_URL}")
+# set(PROTOBUF_SOURCE_URL "$ENV{ARROW_PROTOBUF_URL}")
+# set(RE2_SOURCE_URL "$ENV{ARROW_RE2_URL}")
+# set(RAPIDJSON_SOURCE_URL "$ENV{ARROW_RAPIDJSON_URL}")
+# set(S2N_TLS_SOURCE_URL "$ENV{ARROW_S2N_TLS_URL}")
+# set(SNAPPY_SOURCE_URL "$ENV{ARROW_SNAPPY_URL}")
+# set(SUBSTRAIT_SOURCE_URL "$ENV{ARROW_SUBSTRAIT_URL}")
+# set(THRIFT_SOURCE_URL "$ENV{ARROW_THRIFT_URL}")
+# set(ARROW_UCX_SOURCE_URL "$ENV{ARROW_UCX_URL}")
+# set(ARROW_UTF8PROC_SOURCE_URL "$ENV{ARROW_UTF8PROC_URL}")
+# set(XSIMD_SOURCE_URL "${CMAKE_SOURCE_DIR}/thridparty/")
+# set(ZLIB_SOURCE_URL "$ENV{ARROW_ZLIB_URL}")
+# set(ZSTD_SOURCE_URL "$ENV{ARROW_ZSTD_URL}")
 
-if(DEFINED ENV{ARROW_AWS_C_AUTH_URL})
-  set(AWS_C_AUTH_SOURCE_URL "$ENV{ARROW_AWS_C_AUTH_URL}")
-else()
-  set_urls(AWS_C_AUTH_SOURCE_URL
-           "https://github.com/awslabs/aws-c-auth/archive/${ARROW_AWS_C_AUTH_BUILD_VERSION}.tar.gz"
-  )
-endif()
+set(ABSL_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/absl-20211102.0.tar.gz")
+set(AWS_C_AUTH_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-auth-v0.6.22.tar.gz")
+set(AWS_C_CAL_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-cal-v0.5.20.tar.gz")
+set(AWS_C_COMMON_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-common-v0.8.9.tar.gz")
+set(AWS_C_COMPRESSION_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-compression-v0.2.16.tar.gz")
+set(AWS_C_EVENT_STREAM_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-event-stream-v0.2.18.tar.gz")
+set(AWS_C_HTTP_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-http-v0.7.3.tar.gz")
+set(AWS_C_IO_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-io-v0.13.14.tar.gz")
+set(AWS_C_MQTT_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-mqtt-v0.8.4.tar.gz")
+set(AWS_C_S3_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-s3-v0.2.3.tar.gz")
+set(AWS_C_SDKUTILS_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-c-sdkutils-v0.1.6.tar.gz")
+set(AWS_CHECKSUMS_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-checksums-v0.1.13.tar.gz")
+set(AWS_CRT_CPP_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-crt-cpp-v0.18.16.tar.gz")
+set(AWS_LC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-lc-v1.3.0.tar.gz")
+set(AWSSDK_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-sdk-cpp-1.10.55.tar.gz")
+# set(ARROW_AZURE_SDK_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-lc-v1.3.0.tar.gz")
+set(BOOST_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/boost-1.81.0.tar.gz")
+set(BROTLI_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/brotli-v1.0.9.tar.gz")
+set(ARROW_BZIP2_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/bzip2-1.0.8.tar.gz")
+set(CARES_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/cares-1.17.2.tar.gz")
+set(CRC32C_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/crc32c-1.1.2.tar.gz")
+set(GBENCHMARK_SOURCE_URL "$${CMAKE_SOURCE_DIR}/thirdparty/gbenchmark-v1.8.3.tar.gz")
+set(GFLAGS_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/gflags-v2.2.2.tar.gz")
+set(GLOG_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/glog-v0.5.0.tar.gz")
+set(google_cloud_cpp_storage_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/google-cloud-cpp-v2.22.0.tar.gz")
+set(GRPC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/grpc-v1.46.3.tar.gz")
+set(GTEST_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/gtest-1.11.0.tar.gz")
+set(JEMALLOC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/jemalloc-5.3.0.tar.bz2")
+set(MIMALLOC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/mimalloc-v2.0.6.tar.gz")
+set(NLOHMANN_JSON_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/nlohmann-json-v3.10.5.tar.gz")
+set(LZ4_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/lz4-v1.9.4.tar.gz")
+set(ORC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/orc-2.0.1.tar.gz")
+set(OPENTELEMETRY_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/opentelemetry-cpp-v1.13.0.tar.gz")
+set(OPENTELEMETRY_PROTO_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/opentelemetry-proto-v0.17.0.tar.gz")
+set(PROTOBUF_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/protobuf-v21.3.tar.gz")
+set(RE2_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/re2-2022-06-01.tar.gz")
+set(RAPIDJSON_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/rapidjson-232389d4f1012dddec4ef84861face2d2ba85709.tar.gz")
+set(S2N_TLS_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/s2n-v1.3.35.tar.gz")
+set(SNAPPY_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/snappy-1.1.10.tar.gz")
+# set(SUBSTRAIT_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/aws-lc-v1.3.0.tar.gz")
+set(THRIFT_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/thrift-0.16.0.tar.gz")
+set(ARROW_UCX_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/ucx-1.12.1.tar.gz")
+set(ARROW_UTF8PROC_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/utf8proc-v2.7.0.tar.gz")
+set(XSIMD_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/xsimd-13.0.0.tar.gz")
+set(ZLIB_SOURCE_URL "${CMAKE_SOURCE_DIR}/thirdparty/zlib-1.3.1.tar.gz")
 
-if(DEFINED ENV{ARROW_AWS_C_CAL_URL})
-  set(AWS_C_CAL_SOURCE_URL "$ENV{ARROW_AWS_C_CAL_URL}")
-else()
-  set_urls(AWS_C_CAL_SOURCE_URL
-           "https://github.com/awslabs/aws-c-cal/archive/${ARROW_AWS_C_CAL_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_COMMON_URL})
-  set(AWS_C_COMMON_SOURCE_URL "$ENV{ARROW_AWS_C_COMMON_URL}")
-else()
-  set_urls(AWS_C_COMMON_SOURCE_URL
-           "https://github.com/awslabs/aws-c-common/archive/${ARROW_AWS_C_COMMON_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_COMPRESSION_URL})
-  set(AWS_C_COMPRESSION_SOURCE_URL "$ENV{ARROW_AWS_C_COMPRESSION_URL}")
-else()
-  set_urls(AWS_C_COMPRESSION_SOURCE_URL
-           "https://github.com/awslabs/aws-c-compression/archive/${ARROW_AWS_C_COMPRESSION_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_EVENT_STREAM_URL})
-  set(AWS_C_EVENT_STREAM_SOURCE_URL "$ENV{ARROW_AWS_C_EVENT_STREAM_URL}")
-else()
-  set_urls(AWS_C_EVENT_STREAM_SOURCE_URL
-           "https://github.com/awslabs/aws-c-event-stream/archive/${ARROW_AWS_C_EVENT_STREAM_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_HTTP_URL})
-  set(AWS_C_HTTP_SOURCE_URL "$ENV{ARROW_AWS_C_HTTP_URL}")
-else()
-  set_urls(AWS_C_HTTP_SOURCE_URL
-           "https://github.com/awslabs/aws-c-http/archive/${ARROW_AWS_C_HTTP_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_IO_URL})
-  set(AWS_C_IO_SOURCE_URL "$ENV{ARROW_AWS_C_IO_URL}")
-else()
-  set_urls(AWS_C_IO_SOURCE_URL
-           "https://github.com/awslabs/aws-c-io/archive/${ARROW_AWS_C_IO_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_MQTT_URL})
-  set(AWS_C_MQTT_SOURCE_URL "$ENV{ARROW_AWS_C_MQTT_URL}")
-else()
-  set_urls(AWS_C_MQTT_SOURCE_URL
-           "https://github.com/awslabs/aws-c-mqtt/archive/${ARROW_AWS_C_MQTT_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_S3_URL})
-  set(AWS_C_S3_SOURCE_URL "$ENV{ARROW_AWS_C_S3_URL}")
-else()
-  set_urls(AWS_C_S3_SOURCE_URL
-           "https://github.com/awslabs/aws-c-s3/archive/${ARROW_AWS_C_S3_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_C_SDKUTILS_URL})
-  set(AWS_C_SDKUTILS_SOURCE_URL "$ENV{ARROW_AWS_C_SDKUTILS_URL}")
-else()
-  set_urls(AWS_C_SDKUTILS_SOURCE_URL
-           "https://github.com/awslabs/aws-c-sdkutils/archive/${ARROW_AWS_C_SDKUTILS_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_CHECKSUMS_URL})
-  set(AWS_CHECKSUMS_SOURCE_URL "$ENV{ARROW_AWS_CHECKSUMS_URL}")
-else()
-  set_urls(AWS_CHECKSUMS_SOURCE_URL
-           "https://github.com/awslabs/aws-checksums/archive/${ARROW_AWS_CHECKSUMS_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_CRT_CPP_URL})
-  set(AWS_CRT_CPP_SOURCE_URL "$ENV{ARROW_AWS_CRT_CPP_URL}")
-else()
-  set_urls(AWS_CRT_CPP_SOURCE_URL
-           "https://github.com/awslabs/aws-crt-cpp/archive/${ARROW_AWS_CRT_CPP_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWS_LC_URL})
-  set(AWS_LC_SOURCE_URL "$ENV{ARROW_AWS_LC_URL}")
-else()
-  set_urls(AWS_LC_SOURCE_URL
-           "https://github.com/awslabs/aws-lc/archive/${ARROW_AWS_LC_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_AWSSDK_URL})
-  set(AWSSDK_SOURCE_URL "$ENV{ARROW_AWSSDK_URL}")
-else()
-  set_urls(AWSSDK_SOURCE_URL
-           "https://github.com/aws/aws-sdk-cpp/archive/${ARROW_AWSSDK_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/aws-sdk-cpp-${ARROW_AWSSDK_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_AZURE_SDK_URL})
-  set(ARROW_AZURE_SDK_URL "$ENV{ARROW_AZURE_SDK_URL}")
-else()
-  set_urls(ARROW_AZURE_SDK_URL
-           "https://github.com/Azure/azure-sdk-for-cpp/archive/${ARROW_AZURE_SDK_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_BOOST_URL})
-  set(BOOST_SOURCE_URL "$ENV{ARROW_BOOST_URL}")
-else()
-  string(REPLACE "." "_" ARROW_BOOST_BUILD_VERSION_UNDERSCORES
-                 ${ARROW_BOOST_BUILD_VERSION})
-  set_urls(BOOST_SOURCE_URL
-           # These are trimmed boost bundles we maintain.
-           # See cpp/build-support/trim-boost.sh
-           # FIXME(ARROW-6407) automate uploading this archive to ensure it reflects
-           # our currently used packages and doesn't fall out of sync with
-           # ${ARROW_BOOST_BUILD_VERSION_UNDERSCORES}
-           "${THIRDPARTY_MIRROR_URL}/boost_${ARROW_BOOST_BUILD_VERSION_UNDERSCORES}.tar.gz"
-           "https://boostorg.jfrog.io/artifactory/main/release/${ARROW_BOOST_BUILD_VERSION}/source/boost_${ARROW_BOOST_BUILD_VERSION_UNDERSCORES}.tar.gz"
-           "https://sourceforge.net/projects/boost/files/boost/${ARROW_BOOST_BUILD_VERSION}/boost_${ARROW_BOOST_BUILD_VERSION_UNDERSCORES}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_BROTLI_URL})
-  set(BROTLI_SOURCE_URL "$ENV{ARROW_BROTLI_URL}")
-else()
-  set_urls(BROTLI_SOURCE_URL
-           "https://github.com/google/brotli/archive/${ARROW_BROTLI_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/brotli-${ARROW_BROTLI_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_BZIP2_URL})
-  set(ARROW_BZIP2_SOURCE_URL "$ENV{ARROW_BZIP2_URL}")
-else()
-  set_urls(ARROW_BZIP2_SOURCE_URL
-           "https://sourceware.org/pub/bzip2/bzip2-${ARROW_BZIP2_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/bzip2-${ARROW_BZIP2_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_CARES_URL})
-  set(CARES_SOURCE_URL "$ENV{ARROW_CARES_URL}")
-else()
-  string(REPLACE "." "_" ARROW_CARES_BUILD_VERSION_UNDERSCORES
-                 ${ARROW_CARES_BUILD_VERSION})
-  set_urls(CARES_SOURCE_URL
-           "https://github.com/c-ares/c-ares/releases/download/cares-${ARROW_CARES_BUILD_VERSION_UNDERSCORES}/c-ares-${ARROW_CARES_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/cares-${ARROW_CARES_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_CRC32C_URL})
-  set(CRC32C_SOURCE_URL "$ENV{ARROW_CRC32C_URL}")
-else()
-  set_urls(CRC32C_SOURCE_URL
-           "https://github.com/google/crc32c/archive/${ARROW_CRC32C_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_GBENCHMARK_URL})
-  set(GBENCHMARK_SOURCE_URL "$ENV{ARROW_GBENCHMARK_URL}")
-else()
-  set_urls(GBENCHMARK_SOURCE_URL
-           "https://github.com/google/benchmark/archive/${ARROW_GBENCHMARK_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/gbenchmark-${ARROW_GBENCHMARK_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_GFLAGS_URL})
-  set(GFLAGS_SOURCE_URL "$ENV{ARROW_GFLAGS_URL}")
-else()
-  set_urls(GFLAGS_SOURCE_URL
-           "https://github.com/gflags/gflags/archive/${ARROW_GFLAGS_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/gflags-${ARROW_GFLAGS_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_GLOG_URL})
-  set(GLOG_SOURCE_URL "$ENV{ARROW_GLOG_URL}")
-else()
-  set_urls(GLOG_SOURCE_URL
-           "https://github.com/google/glog/archive/${ARROW_GLOG_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/glog-${ARROW_GLOG_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_GOOGLE_CLOUD_CPP_URL})
-  set(google_cloud_cpp_storage_SOURCE_URL "$ENV{ARROW_GOOGLE_CLOUD_CPP_URL}")
-else()
-  set_urls(google_cloud_cpp_storage_SOURCE_URL
-           "https://github.com/googleapis/google-cloud-cpp/archive/${ARROW_GOOGLE_CLOUD_CPP_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/google-cloud-cpp-${ARROW_GOOGLE_CLOUD_CPP_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_GRPC_URL})
-  set(GRPC_SOURCE_URL "$ENV{ARROW_GRPC_URL}")
-else()
-  set_urls(GRPC_SOURCE_URL
-           "https://github.com/grpc/grpc/archive/${ARROW_GRPC_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/grpc-${ARROW_GRPC_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_GTEST_URL})
-  set(GTEST_SOURCE_URL "$ENV{ARROW_GTEST_URL}")
-else()
-  set_urls(GTEST_SOURCE_URL
-           "https://github.com/google/googletest/archive/release-${ARROW_GTEST_BUILD_VERSION}.tar.gz"
-           "https://chromium.googlesource.com/external/github.com/google/googletest/+archive/release-${ARROW_GTEST_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/gtest-${ARROW_GTEST_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_JEMALLOC_URL})
-  set(JEMALLOC_SOURCE_URL "$ENV{ARROW_JEMALLOC_URL}")
-else()
-  set_urls(JEMALLOC_SOURCE_URL
-           "https://github.com/jemalloc/jemalloc/releases/download/${ARROW_JEMALLOC_BUILD_VERSION}/jemalloc-${ARROW_JEMALLOC_BUILD_VERSION}.tar.bz2"
-           "${THIRDPARTY_MIRROR_URL}/jemalloc-${ARROW_JEMALLOC_BUILD_VERSION}.tar.bz2")
-endif()
-
-if(DEFINED ENV{ARROW_MIMALLOC_URL})
-  set(MIMALLOC_SOURCE_URL "$ENV{ARROW_MIMALLOC_URL}")
-else()
-  set_urls(MIMALLOC_SOURCE_URL
-           "https://github.com/microsoft/mimalloc/archive/${ARROW_MIMALLOC_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/mimalloc-${ARROW_MIMALLOC_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_NLOHMANN_JSON_URL})
-  set(NLOHMANN_JSON_SOURCE_URL "$ENV{ARROW_NLOHMANN_JSON_URL}")
-else()
-  set_urls(NLOHMANN_JSON_SOURCE_URL
-           "https://github.com/nlohmann/json/archive/${ARROW_NLOHMANN_JSON_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_LZ4_URL})
-  set(LZ4_SOURCE_URL "$ENV{ARROW_LZ4_URL}")
-else()
-  set_urls(LZ4_SOURCE_URL
-           "https://github.com/lz4/lz4/archive/${ARROW_LZ4_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/lz4-${ARROW_LZ4_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_ORC_URL})
-  set(ORC_SOURCE_URL "$ENV{ARROW_ORC_URL}")
-else()
-  set_urls(ORC_SOURCE_URL
-           "https://www.apache.org/dyn/closer.cgi?action=download&filename=/orc/orc-${ARROW_ORC_BUILD_VERSION}/orc-${ARROW_ORC_BUILD_VERSION}.tar.gz"
-           "https://downloads.apache.org/orc/orc-${ARROW_ORC_BUILD_VERSION}/orc-${ARROW_ORC_BUILD_VERSION}.tar.gz"
-           "https://github.com/apache/orc/archive/rel/release-${ARROW_ORC_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_OPENTELEMETRY_URL})
-  set(OPENTELEMETRY_SOURCE_URL "$ENV{ARROW_OPENTELEMETRY_URL}")
-else()
-  # TODO: add mirror
-  set_urls(OPENTELEMETRY_SOURCE_URL
-           "https://github.com/open-telemetry/opentelemetry-cpp/archive/refs/tags/${ARROW_OPENTELEMETRY_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_OPENTELEMETRY_PROTO_URL})
-  set(OPENTELEMETRY_PROTO_SOURCE_URL "$ENV{ARROW_OPENTELEMETRY_PROTO_URL}")
-else()
-  # TODO: add mirror
-  # N.B. upstream pins to particular commits, not tags
-  set_urls(OPENTELEMETRY_PROTO_SOURCE_URL
-           "https://github.com/open-telemetry/opentelemetry-proto/archive/${ARROW_OPENTELEMETRY_PROTO_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_PROTOBUF_URL})
-  set(PROTOBUF_SOURCE_URL "$ENV{ARROW_PROTOBUF_URL}")
-else()
-  string(SUBSTRING ${ARROW_PROTOBUF_BUILD_VERSION} 1 -1
-                   ARROW_PROTOBUF_STRIPPED_BUILD_VERSION)
-  # strip the leading `v`
-  set_urls(PROTOBUF_SOURCE_URL
-           "https://github.com/protocolbuffers/protobuf/releases/download/${ARROW_PROTOBUF_BUILD_VERSION}/protobuf-all-${ARROW_PROTOBUF_STRIPPED_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/protobuf-${ARROW_PROTOBUF_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_RE2_URL})
-  set(RE2_SOURCE_URL "$ENV{ARROW_RE2_URL}")
-else()
-  set_urls(RE2_SOURCE_URL
-           "https://github.com/google/re2/archive/${ARROW_RE2_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/re2-${ARROW_RE2_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_RAPIDJSON_URL})
-  set(RAPIDJSON_SOURCE_URL "$ENV{ARROW_RAPIDJSON_URL}")
-else()
-  set_urls(RAPIDJSON_SOURCE_URL
-           "https://github.com/miloyip/rapidjson/archive/${ARROW_RAPIDJSON_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/rapidjson-${ARROW_RAPIDJSON_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_S2N_TLS_URL})
-  set(S2N_TLS_SOURCE_URL "$ENV{ARROW_S2N_TLS_URL}")
-else()
-  set_urls(S2N_TLS_SOURCE_URL
-           "https://github.com/aws/s2n-tls/archive/${ARROW_S2N_TLS_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_SNAPPY_URL})
-  set(SNAPPY_SOURCE_URL "$ENV{ARROW_SNAPPY_URL}")
-else()
-  set_urls(SNAPPY_SOURCE_URL
-           "https://github.com/google/snappy/archive/${ARROW_SNAPPY_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/snappy-${ARROW_SNAPPY_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_SUBSTRAIT_URL})
-  set(SUBSTRAIT_SOURCE_URL "$ENV{ARROW_SUBSTRAIT_URL}")
-else()
-  set_urls(SUBSTRAIT_SOURCE_URL
-           "https://github.com/substrait-io/substrait/archive/${ARROW_SUBSTRAIT_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_THRIFT_URL})
-  set(THRIFT_SOURCE_URL "$ENV{ARROW_THRIFT_URL}")
-else()
-  set_urls(THRIFT_SOURCE_URL
-           "https://www.apache.org/dyn/closer.cgi?action=download&filename=/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://downloads.apache.org/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://apache.claz.org/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://apache.cs.utah.edu/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://apache.mirrors.lucidnetworks.net/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://apache.osuosl.org/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://ftp.wayne.edu/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://mirror.olnevhost.net/pub/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://mirrors.gigenet.com/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://mirrors.koehn.com/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://mirrors.ocf.berkeley.edu/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://mirrors.sonic.net/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "https://us.mirrors.quenda.co/apache/thrift/${ARROW_THRIFT_BUILD_VERSION}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/thrift-${ARROW_THRIFT_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_UCX_URL})
-  set(ARROW_UCX_SOURCE_URL "$ENV{ARROW_UCX_URL}")
-else()
-  set_urls(ARROW_UCX_SOURCE_URL
-           "https://github.com/openucx/ucx/archive/v${ARROW_UCX_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_UTF8PROC_URL})
-  set(ARROW_UTF8PROC_SOURCE_URL "$ENV{ARROW_UTF8PROC_URL}")
-else()
-  set_urls(ARROW_UTF8PROC_SOURCE_URL
-           "https://github.com/JuliaStrings/utf8proc/archive/${ARROW_UTF8PROC_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_XSIMD_URL})
-  set(XSIMD_SOURCE_URL "$ENV{ARROW_XSIMD_URL}")
-else()
-  set_urls(XSIMD_SOURCE_URL
-           "https://github.com/xtensor-stack/xsimd/archive/${ARROW_XSIMD_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
-if(DEFINED ENV{ARROW_ZLIB_URL})
-  set(ZLIB_SOURCE_URL "$ENV{ARROW_ZLIB_URL}")
-else()
-  set_urls(ZLIB_SOURCE_URL
-           "https://zlib.net/fossils/zlib-${ARROW_ZLIB_BUILD_VERSION}.tar.gz"
-           "${THIRDPARTY_MIRROR_URL}/zlib-${ARROW_ZLIB_BUILD_VERSION}.tar.gz")
-endif()
-
-if(DEFINED ENV{ARROW_ZSTD_URL})
-  set(ZSTD_SOURCE_URL "$ENV{ARROW_ZSTD_URL}")
-else()
-  set_urls(ZSTD_SOURCE_URL
-           "https://github.com/facebook/zstd/releases/download/v${ARROW_ZSTD_BUILD_VERSION}/zstd-${ARROW_ZSTD_BUILD_VERSION}.tar.gz"
-  )
-endif()
-
+MESSAGE("=========================")
+MESSAGE("${CMAKE_SOURCE_DIR}/thirdparty/jemalloc-5.3.0.tar.bz2")
+MESSAGE("=========================")
 # ----------------------------------------------------------------------
 # ExternalProject options
 
@@ -2113,6 +1810,10 @@ macro(build_jemalloc)
   # installations.
 
   message(STATUS "Building jemalloc from source")
+  message("OKOKOK")  
+  message("${JEMALLOC_SOURCE_URL}")
+  message("$ENV{ARROW_JEMALLOC_URL}")
+  message("OKOKOK1")
 
   set(ARROW_JEMALLOC_USE_SHARED OFF)
   set(JEMALLOC_PREFIX
@@ -2153,6 +1854,7 @@ macro(build_jemalloc)
   if(CMAKE_OSX_SYSROOT)
     list(APPEND JEMALLOC_BUILD_COMMAND "SDKROOT=${CMAKE_OSX_SYSROOT}")
   endif()
+
 
   externalproject_add(jemalloc_ep
                       ${EP_COMMON_OPTIONS}
