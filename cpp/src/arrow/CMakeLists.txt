@@ -1093,41 +1093,6 @@ if(ARROW_WITH_BACKTRACE)
   endforeach()
 endif()
 
-if(ARROW_TESTING)
-  add_arrow_lib(arrow_testing
-                CMAKE_PACKAGE_NAME
-                ArrowTesting
-                PKG_CONFIG_NAME
-                arrow-testing
-                SOURCES
-                ${ARROW_TESTING_SRCS}
-                OUTPUTS
-                ARROW_TESTING_LIBRARIES
-                PRECOMPILED_HEADERS
-                "$<$<COMPILE_LANGUAGE:CXX>:arrow/pch.h>"
-                SHARED_LINK_LIBS
-                ${ARROW_TESTING_SHARED_LINK_LIBS}
-                SHARED_PRIVATE_LINK_LIBS
-                ${ARROW_TESTING_SHARED_PRIVATE_LINK_LIBS}
-                SHARED_INSTALL_INTERFACE_LIBS
-                ${ARROW_TESTING_SHARED_INSTALL_INTERFACE_LIBS}
-                STATIC_LINK_LIBS
-                ${ARROW_TESTING_STATIC_LINK_LIBS}
-                STATIC_INSTALL_INTERFACE_LIBS
-                ${ARROW_TESTING_STATIC_INSTALL_INTERFACE_LIBS})
-
-  add_custom_target(arrow_testing)
-  add_dependencies(arrow_testing ${ARROW_TESTING_LIBRARIES})
-
-  if(ARROW_BUILD_STATIC AND WIN32)
-    target_compile_definitions(arrow_testing_static PUBLIC ARROW_TESTING_STATIC)
-  endif()
-
-  foreach(LIB_TARGET ${ARROW_TESTING_LIBRARIES})
-    target_compile_definitions(${LIB_TARGET} PRIVATE ARROW_TESTING_EXPORTING)
-  endforeach()
-endif()
-
 arrow_install_all_headers("arrow")
 
 config_summary_cmake_setters("${CMAKE_CURRENT_BINARY_DIR}/ArrowOptions.cmake")
@@ -1137,63 +1102,6 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ArrowOptions.cmake
 # For backward compatibility for find_package(arrow)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/arrow-config.cmake
         DESTINATION "${ARROW_CMAKE_DIR}/Arrow")
-
-#
-# Unit tests
-#
-add_arrow_test(array_test
-               SOURCES
-               array/array_test.cc
-               array/array_binary_test.cc
-               array/array_dict_test.cc
-               array/array_list_test.cc
-               array/array_list_view_test.cc
-               array/array_run_end_test.cc
-               array/array_struct_test.cc
-               array/array_union_test.cc
-               array/array_view_test.cc
-               PRECOMPILED_HEADERS
-               "$<$<COMPILE_LANGUAGE:CXX>:arrow/testing/pch.h>")
-
-add_arrow_test(buffer_test)
-
-if(ARROW_IPC)
-  # The extension type unit tests require IPC / Flatbuffers support
-  add_arrow_test(extension_type_test)
-endif()
-
-add_arrow_test(misc_test
-               SOURCES
-               datum_test.cc
-               memory_pool_test.cc
-               result_test.cc
-               pretty_print_test.cc
-               status_test.cc)
-
-add_arrow_test(public_api_test)
-set_source_files_properties(public_api_test.cc PROPERTIES SKIP_PRECOMPILE_HEADERS ON
-                                                          SKIP_UNITY_BUILD_INCLUSION ON)
-
-add_arrow_test(scalar_test)
-add_arrow_test(type_test SOURCES field_ref_test.cc type_test.cc)
-
-add_arrow_test(table_test
-               SOURCES
-               chunked_array_test.cc
-               record_batch_test.cc
-               table_test.cc
-               table_builder_test.cc)
-
-add_arrow_test(tensor_test)
-add_arrow_test(sparse_tensor_test)
-
-add_arrow_test(stl_test SOURCES stl_iterator_test.cc stl_test.cc)
-
-add_arrow_benchmark(builder_benchmark)
-add_arrow_benchmark(compare_benchmark)
-add_arrow_benchmark(memory_pool_benchmark)
-add_arrow_benchmark(type_benchmark)
-add_arrow_benchmark(tensor_benchmark)
 
 #
 # Recurse into sub-directories
@@ -1211,18 +1119,10 @@ if(ARROW_DATASET)
   add_subdirectory(dataset)
 endif()
 
-if(ARROW_FILESYSTEM)
-  add_subdirectory(filesystem)
-endif()
-
 if(ARROW_FLIGHT)
   add_subdirectory(flight)
 endif()
 
 if(ARROW_IPC)
   add_subdirectory(ipc)
-endif()
-
-if(ARROW_TENSORFLOW)
-  add_subdirectory(adapters/tensorflow)
 endif()
