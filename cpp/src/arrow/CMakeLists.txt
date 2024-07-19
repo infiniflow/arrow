@@ -1028,10 +1028,7 @@ add_arrow_lib(arrow
               ${ARROW_INTEGRATION_TARGET_STATIC}
               ${ARROW_IO_TARGET_STATIC}
               ${ARROW_IPC_TARGET_STATIC}
-              ${ARROW_JSON_TARGET_STATIC}
               ${ARROW_MEMORY_POOL_TARGET_STATIC}
-              ${ARROW_ORC_TARGET_STATIC}
-              ${ARROW_TELEMETRY_TARGET_STATIC}
               ${ARROW_UTIL_TARGET_STATIC}
               ${ARROW_VENDORED_TARGET_STATIC}
               ${ARROW_SYSTEM_LINK_LIBS}
@@ -1203,34 +1200,12 @@ add_arrow_benchmark(tensor_benchmark)
 #
 
 # Unconditionally install testing headers that are also useful for Arrow consumers.
-add_subdirectory(testing)
-
 add_subdirectory(array)
-add_subdirectory(c)
 add_subdirectory(compute)
 add_subdirectory(io)
 add_subdirectory(tensor)
 add_subdirectory(util)
 add_subdirectory(vendored)
-
-if(ARROW_BUILD_INTEGRATION OR ARROW_BUILD_TESTS)
-  # We build tests for the JSON integration machinery even if integration
-  # is not enabled, to ensure it's exercised in more builds than just the
-  # integration build.
-  add_subdirectory(integration)
-endif()
-
-if(ARROW_CSV)
-  add_subdirectory(csv)
-endif()
-
-if(ARROW_ACERO)
-  add_subdirectory(acero)
-endif()
-
-if(ARROW_CUDA)
-  add_subdirectory(gpu)
-endif()
 
 if(ARROW_DATASET)
   add_subdirectory(dataset)
@@ -1246,23 +1221,6 @@ endif()
 
 if(ARROW_IPC)
   add_subdirectory(ipc)
-endif()
-
-if(ARROW_JSON)
-  add_subdirectory(json)
-  add_subdirectory(extension)
-endif()
-
-if(ARROW_ORC)
-  add_subdirectory(adapters/orc)
-endif()
-
-if(ARROW_SUBSTRAIT)
-  add_subdirectory(engine)
-endif()
-
-if(ARROW_WITH_OPENTELEMETRY)
-  add_subdirectory(telemetry)
 endif()
 
 if(ARROW_TENSORFLOW)
