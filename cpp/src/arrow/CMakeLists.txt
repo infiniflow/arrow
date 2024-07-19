@@ -787,35 +787,6 @@ else()
   set(ARROW_FILESYSTEM_TARGET_STATIC)
 endif()
 
-if(ARROW_IPC)
-  list(APPEND
-       ARROW_IPC_SRCS
-       ipc/dictionary.cc
-       ipc/feather.cc
-       ipc/message.cc
-       ipc/metadata_internal.cc
-       ipc/options.cc
-       ipc/reader.cc
-       ipc/writer.cc)
-  if(ARROW_JSON)
-    list(APPEND ARROW_IPC_SRCS ipc/json_simple.cc)
-  endif()
-  arrow_add_object_library(ARROW_IPC ${ARROW_IPC_SRCS})
-  foreach(ARROW_IPC_TARGET ${ARROW_IPC_TARGETS})
-    message(STATUS "bbbbb flatbuffers")
-    target_link_libraries(${ARROW_IPC_TARGET} PRIVATE flatbuffers.a)
-  endforeach()
-  if(ARROW_JSON)
-    message(STATUS "bbbbb rapidjson")
-    foreach(ARROW_IPC_TARGET ${ARROW_IPC_TARGETS})
-      target_link_libraries(${ARROW_IPC_TARGET} PRIVATE RapidJSON)
-    endforeach()
-  endif()
-else()
-  set(ARROW_IPC_TARGET_SHARED)
-  set(ARROW_IPC_TARGET_STATIC)
-endif()
-
 if(ARROW_JSON)
   arrow_add_object_library(ARROW_JSON
                            extension/fixed_shape_tensor.cc
@@ -1024,15 +995,3 @@ add_subdirectory(io)
 add_subdirectory(tensor)
 add_subdirectory(util)
 add_subdirectory(vendored)
-
-if(ARROW_DATASET)
-  add_subdirectory(dataset)
-endif()
-
-if(ARROW_FLIGHT)
-  add_subdirectory(flight)
-endif()
-
-if(ARROW_IPC)
-  add_subdirectory(ipc)
-endif()
