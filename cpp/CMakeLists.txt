@@ -541,7 +541,8 @@ set(PARQUET_PC_CFLAGS_PRIVATE " -DPARQUET_STATIC")
 set(PARQUET_PC_REQUIRES "")
 set(PARQUET_PC_REQUIRES_PRIVATE "")
 
-include(ThirdpartyToolchain)
+#include(ThirdpartyToolchain)
+include(Thirdparty)
 
 # Add common flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_COMMON_FLAGS}")
@@ -744,11 +745,12 @@ add_link_options($<$<COMPILE_LANGUAGE:CXX>:-L${LLVM_LIBRARY_DIRS}>)
 add_link_options($<$<COMPILE_LANGUAGE:CXX>:-Wl,-rpath,${LLVM_LIBRARY_DIRS}>)
 
 add_subdirectory(src/arrow)
-add_subdirectory(thirdparty/xsimd-13.0.0)
+add_subdirectory(thirdparty/thrift-0.16.0)
+add_subdirectory(thirdparty/re2-2022-06-01)
+
 
 if(ARROW_PARQUET)
   add_subdirectory(src/parquet)
-  add_subdirectory(tools/parquet)
   if(PARQUET_BUILD_EXAMPLES)
     add_subdirectory(examples/parquet)
   endif()

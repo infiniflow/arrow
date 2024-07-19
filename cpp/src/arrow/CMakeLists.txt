@@ -444,7 +444,7 @@ endif()
 arrow_add_object_library(ARROW_MEMORY_POOL ${ARROW_MEMORY_POOL_SRCS})
 if(ARROW_JEMALLOC)
   foreach(ARROW_MEMORY_POOL_TARGET ${ARROW_MEMORY_POOL_TARGETS})
-    target_link_libraries(${ARROW_MEMORY_POOL_TARGET} PRIVATE jemalloc::jemalloc)
+    target_link_libraries(${ARROW_MEMORY_POOL_TARGET} PRIVATE jemalloc.a)
   endforeach()
 endif()
 if(ARROW_MIMALLOC)
@@ -811,7 +811,7 @@ if(ARROW_WITH_RE2)
 endif()
 if(ARROW_WITH_UTF8PROC)
   foreach(ARROW_COMPUTE_TARGET ${ARROW_COMPUTE_TARGETS})
-    target_link_libraries(${ARROW_COMPUTE_TARGET} PRIVATE utf8proc::utf8proc)
+    target_link_libraries(${ARROW_COMPUTE_TARGET} PRIVATE utf8proc.a)
   endforeach()
 endif()
 
@@ -891,9 +891,11 @@ if(ARROW_IPC)
   endif()
   arrow_add_object_library(ARROW_IPC ${ARROW_IPC_SRCS})
   foreach(ARROW_IPC_TARGET ${ARROW_IPC_TARGETS})
-    target_link_libraries(${ARROW_IPC_TARGET} PRIVATE arrow::flatbuffers)
+    message(STATUS "bbbbb flatbuffers")
+    target_link_libraries(${ARROW_IPC_TARGET} PRIVATE flatbuffers.a)
   endforeach()
   if(ARROW_JSON)
+    message(STATUS "bbbbb rapidjson")
     foreach(ARROW_IPC_TARGET ${ARROW_IPC_TARGETS})
       target_link_libraries(${ARROW_IPC_TARGET} PRIVATE RapidJSON)
     endforeach()
@@ -1018,21 +1020,6 @@ add_arrow_lib(arrow
               SHARED_LINK_FLAGS
               ${ARROW_SHARED_LINK_FLAGS}
               SHARED_PRIVATE_LINK_LIBS
-              ${ARROW_ARRAY_TARGET_SHARED}
-              ${ARROW_COMPUTE_TARGET_SHARED}
-              ${ARROW_CSV_TARGET_SHARED}
-              ${ARROW_FILESYSTEM_TARGET_SHARED}
-              ${ARROW_INTEGRATION_TARGET_SHARED}
-              ${ARROW_IO_TARGET_SHARED}
-              ${ARROW_IPC_TARGET_SHARED}
-              ${ARROW_JSON_TARGET_SHARED}
-              ${ARROW_MEMORY_POOL_TARGET_SHARED}
-              ${ARROW_ORC_TARGET_SHARED}
-              ${ARROW_TELEMETRY_TARGET_SHARED}
-              ${ARROW_UTIL_TARGET_SHARED}
-              ${ARROW_VENDORED_TARGET_SHARED}
-              ${ARROW_SHARED_PRIVATE_LINK_LIBS}
-              ${ARROW_SYSTEM_LINK_LIBS}
               STATIC_LINK_LIBS
               ${ARROW_ARRAY_TARGET_STATIC}
               ${ARROW_COMPUTE_TARGET_STATIC}

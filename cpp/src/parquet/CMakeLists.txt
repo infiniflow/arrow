@@ -266,7 +266,7 @@ if(NOT PARQUET_MINIMAL_DEPENDENCY)
 
   # Link publicly with parquet_static (because internal users need to
   # transitively link all dependencies)
-  list(APPEND PARQUET_STATIC_LINK_LIBS thrift::thrift)
+  list(APPEND PARQUET_STATIC_LINK_LIBS thrift.a)
   if(NOT THRIFT_VENDORED)
     list(APPEND PARQUET_STATIC_INSTALL_INTERFACE_LIBS thrift::thrift)
   endif()
@@ -335,6 +335,8 @@ if(ARROW_BUILD_STATIC AND WIN32)
   target_compile_definitions(parquet_static PUBLIC PARQUET_STATIC)
 endif()
 
+SET (Thrift_VERSION_MAJOR 0)
+SET (Thrift_VERSION_MINOR 16)
 add_definitions(-DPARQUET_THRIFT_VERSION_MAJOR=${Thrift_VERSION_MAJOR})
 add_definitions(-DPARQUET_THRIFT_VERSION_MINOR=${Thrift_VERSION_MINOR})
 
