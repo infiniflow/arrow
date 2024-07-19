@@ -705,90 +705,6 @@ else()
   set(ARROW_CSV_TARGET_STATIC)
 endif()
 
-# Baseline Compute functionality + scalar casts and a few select kernels
-set(ARROW_COMPUTE_SRCS
-    compute/api_aggregate.cc
-    compute/api_scalar.cc
-    compute/api_vector.cc
-    compute/cast.cc
-    compute/exec.cc
-    compute/expression.cc
-    compute/function.cc
-    compute/function_internal.cc
-    compute/kernel.cc
-    compute/key_hash_internal.cc
-    compute/key_map_internal.cc
-    compute/light_array_internal.cc
-    compute/ordering.cc
-    compute/registry.cc
-    compute/kernels/codegen_internal.cc
-    compute/kernels/row_encoder.cc
-    compute/kernels/ree_util_internal.cc
-    compute/kernels/scalar_cast_boolean.cc
-    compute/kernels/scalar_cast_dictionary.cc
-    compute/kernels/scalar_cast_extension.cc
-    compute/kernels/scalar_cast_internal.cc
-    compute/kernels/scalar_cast_nested.cc
-    compute/kernels/scalar_cast_numeric.cc
-    compute/kernels/scalar_cast_string.cc
-    compute/kernels/scalar_cast_temporal.cc
-    compute/kernels/util_internal.cc
-    compute/kernels/vector_hash.cc
-    compute/kernels/vector_selection.cc
-    compute/kernels/vector_selection_filter_internal.cc
-    compute/kernels/vector_selection_internal.cc
-    compute/kernels/vector_selection_take_internal.cc
-    compute/row/encode_internal.cc
-    compute/row/compare_internal.cc
-    compute/row/grouper.cc
-    compute/row/row_internal.cc
-    compute/util.cc
-    compute/util_internal.cc)
-
-append_runtime_avx2_src(ARROW_COMPUTE_SRCS compute/key_hash_internal_avx2.cc)
-append_runtime_avx2_bmi2_src(ARROW_COMPUTE_SRCS compute/key_map_internal_avx2.cc)
-append_runtime_avx2_src(ARROW_COMPUTE_SRCS compute/row/compare_internal_avx2.cc)
-append_runtime_avx2_src(ARROW_COMPUTE_SRCS compute/row/encode_internal_avx2.cc)
-append_runtime_avx2_bmi2_src(ARROW_COMPUTE_SRCS compute/util_avx2.cc)
-
-if(ARROW_COMPUTE)
-  # Include the remaining kernels
-  list(APPEND
-       ARROW_COMPUTE_SRCS
-       compute/kernels/aggregate_basic.cc
-       compute/kernels/aggregate_mode.cc
-       compute/kernels/aggregate_quantile.cc
-       compute/kernels/aggregate_tdigest.cc
-       compute/kernels/aggregate_var_std.cc
-       compute/kernels/hash_aggregate.cc
-       compute/kernels/scalar_arithmetic.cc
-       compute/kernels/scalar_boolean.cc
-       compute/kernels/scalar_compare.cc
-       compute/kernels/scalar_if_else.cc
-       compute/kernels/scalar_nested.cc
-       compute/kernels/scalar_random.cc
-       compute/kernels/scalar_round.cc
-       compute/kernels/scalar_set_lookup.cc
-       compute/kernels/scalar_string_ascii.cc
-       compute/kernels/scalar_string_utf8.cc
-       compute/kernels/scalar_temporal_binary.cc
-       compute/kernels/scalar_temporal_unary.cc
-       compute/kernels/scalar_validity.cc
-       compute/kernels/vector_array_sort.cc
-       compute/kernels/vector_cumulative_ops.cc
-       compute/kernels/vector_pairwise.cc
-       compute/kernels/vector_nested.cc
-       compute/kernels/vector_rank.cc
-       compute/kernels/vector_replace.cc
-       compute/kernels/vector_run_end_encode.cc
-       compute/kernels/vector_select_k.cc
-       compute/kernels/vector_sort.cc)
-
-  append_runtime_avx2_src(ARROW_COMPUTE_SRCS compute/kernels/aggregate_basic_avx2.cc)
-  append_runtime_avx512_src(ARROW_COMPUTE_SRCS compute/kernels/aggregate_basic_avx512.cc)
-endif()
-
-arrow_add_object_library(ARROW_COMPUTE ${ARROW_COMPUTE_SRCS})
 if(ARROW_USE_BOOST)
   foreach(ARROW_COMPUTE_TARGET ${ARROW_COMPUTE_TARGETS})
     target_link_libraries(${ARROW_COMPUTE_TARGET} PRIVATE Boost::headers)
@@ -802,11 +718,6 @@ endif()
 if(ARROW_WITH_OPENTELEMETRY)
   foreach(ARROW_COMPUTE_TARGET ${ARROW_COMPUTE_TARGETS})
     target_link_libraries(${ARROW_COMPUTE_TARGET} PRIVATE ${ARROW_OPENTELEMETRY_LIBS})
-  endforeach()
-endif()
-if(ARROW_WITH_RE2)
-  foreach(ARROW_COMPUTE_TARGET ${ARROW_COMPUTE_TARGETS})
-    target_link_libraries(${ARROW_COMPUTE_TARGET} PRIVATE re2::re2)
   endforeach()
 endif()
 if(ARROW_WITH_UTF8PROC)
@@ -1109,7 +1020,6 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/arrow-config.cmake
 
 # Unconditionally install testing headers that are also useful for Arrow consumers.
 add_subdirectory(array)
-add_subdirectory(compute)
 add_subdirectory(io)
 add_subdirectory(tensor)
 add_subdirectory(util)

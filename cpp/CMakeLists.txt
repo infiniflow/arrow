@@ -745,28 +745,9 @@ add_link_options($<$<COMPILE_LANGUAGE:CXX>:-L${LLVM_LIBRARY_DIRS}>)
 add_link_options($<$<COMPILE_LANGUAGE:CXX>:-Wl,-rpath,${LLVM_LIBRARY_DIRS}>)
 
 add_subdirectory(src/arrow)
-add_subdirectory(thirdparty/thrift-0.16.0)
-add_subdirectory(thirdparty/re2-2022-06-01)
-
 
 if(ARROW_PARQUET)
   add_subdirectory(src/parquet)
-  if(PARQUET_BUILD_EXAMPLES)
-    add_subdirectory(examples/parquet)
-  endif()
-endif()
-
-if(ARROW_GANDIVA)
-  add_subdirectory(src/gandiva)
-endif()
-
-if(ARROW_SKYHOOK)
-  add_subdirectory(src/skyhook)
-endif()
-
-if(ARROW_BUILD_EXAMPLES)
-  add_custom_target(runexample ctest -L example)
-  add_subdirectory(examples/arrow)
 endif()
 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.txt
